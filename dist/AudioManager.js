@@ -1,11 +1,10 @@
 export class AudioManager {
-  private flipSound = new Audio("./assets/audio/flip.mp3");
-  private failSound = new Audio("./assets/audio/fail.mp3");
-  private goodSound = new Audio("./assets/audio/good.mp3");
-  private gameOverSound = new Audio("./assets/audio/game-over.mp3");
-  private bgMusic = new Audio("./assets/audio/fulltrack.mp3");
-
   constructor() {
+    this.flipSound = new Audio("./assets/audio/flip.mp3");
+    this.failSound = new Audio("./assets/audio/fail.mp3");
+    this.goodSound = new Audio("./assets/audio/good.mp3");
+    this.gameOverSound = new Audio("./assets/audio/game-over.mp3");
+    this.bgMusic = new Audio("./assets/audio/fulltrack.mp3");
     this.bgMusic.loop = true;
     this.bgMusic.volume = 0.3;
 
@@ -16,7 +15,6 @@ export class AudioManager {
     this.gameOverSound.preload = "auto";
     this.bgMusic.preload = "auto";
   }
-
   playFlip() {
     this.flipSound.play();
   }
@@ -29,7 +27,6 @@ export class AudioManager {
   playGameOver() {
     this.gameOverSound.play();
   }
-
   startBackgroundMusic() {
     this.bgMusic.play().catch((error) => {
       console.log("Background music couldn't start automatically:", error);

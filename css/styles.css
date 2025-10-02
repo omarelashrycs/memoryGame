@@ -1,0 +1,189 @@
+/* Memory Game Styles */
+body {
+  background: url("../assets/imgs/brain.jpg") repeat;
+  background-size: 200px 200px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Game area background */
+#game {
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+}
+
+#game::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+/* Progress Bar Styles */
+.progress {
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #28a745, #20c997);
+  transition: width 0.5s ease;
+  height: 100%;
+}
+
+/* Card Styles */
+.card {
+  height: 160px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  border-radius: 8px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: #ffffff;
+  opacity: 0;
+  z-index: 1;
+}
+
+.card-back {
+  transform: rotateY(0deg);
+  background: #f8f9fa;
+  opacity: 1;
+  z-index: 2;
+}
+
+/* When card is flipped, show front and hide back */
+.card.flipped .card-front {
+  opacity: 1;
+  z-index: 2;
+}
+
+.card.flipped .card-back {
+  opacity: 0;
+  z-index: 1;
+}
+
+.card-front img,
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Make back card image more prominent */
+.card-back img {
+  object-fit: contain;
+  padding: 8px;
+}
+
+/* Make front card images more prominent */
+.card-front img {
+  object-fit: cover;
+  padding: 4px;
+}
+
+/* Hover effects */
+.card:hover .card-inner {
+  transform: scale(1.05);
+}
+
+.card.flipped:hover .card-inner {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+/* Matched cards */
+.card.matched {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .row-cols-5 {
+    --bs-columns: 4;
+  }
+
+  .card {
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row-cols-5 {
+    --bs-columns: 3;
+  }
+
+  .card {
+    height: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .row-cols-5 {
+    --bs-columns: 2;
+  }
+
+  .card {
+    height: 100px;
+  }
+}

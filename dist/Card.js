@@ -1,12 +1,8 @@
 export class Card {
-  id: number;
-  element: HTMLElement;
-  isFlipped: boolean = false;
-  isMatched: boolean = false;
-
-  constructor(id: number, frontImage: string) {
+  constructor(id, frontImage) {
+    this.isFlipped = false;
+    this.isMatched = false;
     this.id = id;
-
     this.element = document.createElement("div");
     this.element.className = "col card";
     this.element.innerHTML = `
@@ -20,12 +16,10 @@ export class Card {
       </div>
     `;
   }
-
   flip() {
     this.isFlipped = !this.isFlipped;
     this.element.classList.toggle("flipped", this.isFlipped);
   }
-
   setMatched() {
     this.isMatched = true;
     this.element.classList.add("matched");
