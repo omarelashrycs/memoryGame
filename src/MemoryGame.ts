@@ -14,6 +14,8 @@ export class MemoryGame {
     this.progress = new ProgressBar(progressContainer);
     this.generateCards(container);
     this.showAllCardsThenHide();
+
+    this.audio.startBackgroundMusic();
   }
 
   private generateCards(container: HTMLElement) {
@@ -68,6 +70,7 @@ export class MemoryGame {
 
       if (this.matches === this.totalPairs) {
         this.audio.playGameOver();
+        this.audio.stopBackgroundMusic();
       }
     } else {
       this.audio.playFail();
